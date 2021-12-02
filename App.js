@@ -1,8 +1,9 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, Image, TouchableOpacity} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { useNavigation } from '@react-navigation/native';
 
 import Loading from './screen/LoadingContainer';
 import LogJoin from './screen/LogJoinContainer'
@@ -35,9 +36,21 @@ function LogJoin_navi(){
   );
 }
 
+function LogoTitle(){
+  const navigation = useNavigation();
+  return(
+    <TouchableOpacity onPress={() => navigation.navigate('home')}>
+     <Image 
+      style={{ width: 100, height: 25 }}
+      source={require('./asset/logoTitle.png')}/>
+    </TouchableOpacity>
+  );
+}
+
 function Tab_navi(){
   return(
-    <Tab.Navigator initialRouteName="home">
+    <Tab.Navigator initialRouteName="home"
+      screenOptions={{headerTitle:(props)=><LogoTitle{...props}/>}}>
       <Tab.Screen name="home" component={Home} />
       <Tab.Screen name="walk" component={Walk} />
       <Tab.Screen name="profile" component={Profile} />
@@ -79,7 +92,7 @@ export default function App(){
       <Stack.Navigator>
         <Stack.Screen name="loading" component={Loading} />
         <Stack.Screen name="logjoin_navi" component={LogJoin_navi} options={{headerShown:false}} />
-        <Stack.Screen name="tab_navi" component={Tab_navi} options={{headerShown:false}} />
+        <Stack.Screen name="tab_navi" component={Tab_navi} options={{headerShown:false}}/>
         <Stack.Screen name="alarm" component={Alarm} />
         <Stack.Screen name="report" component={Report} />
         <Stack.Screen name="walk_navi" component={Walk_navi} options={{headerShown:false}} />
