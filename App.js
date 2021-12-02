@@ -90,7 +90,7 @@ export default function App(){
   return(
     <NavigationContainer  initialRouteName="loading">
       <Stack.Navigator>
-        <Stack.Screen name="loading" component={Loading} />
+        <Stack.Screen name="loading" component={Loading} options={{headerShown:false}}/>
         <Stack.Screen name="logjoin_navi" component={LogJoin_navi} options={{headerShown:false}} />
         <Stack.Screen name="tab_navi" component={Tab_navi} options={{headerShown:false}}/>
         <Stack.Screen name="alarm" component={Alarm} />
