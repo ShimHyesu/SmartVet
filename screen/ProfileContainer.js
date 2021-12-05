@@ -23,7 +23,7 @@ export default function ProfileContainer({navigation}){
                     <Text style={s_styles.text_l}>     계정</Text>
                   </View>
                   <View style={s_styles.block_r}>
-                    <Text style={s_styles.text_r}>{'>      '}</Text>
+                    <Text style={s_styles.text_r}>{'  >      '}</Text>
                   </View>
               </TouchableOpacity>
               <View style={s_styles.block_b}></View>
@@ -33,7 +33,7 @@ export default function ProfileContainer({navigation}){
                     <Text style={s_styles.text_l}>     우리아이</Text>
                   </View>
                   <View style={s_styles.block_r}>
-                    <Text style={s_styles.text_r}>{'>      '}</Text>
+                    <Text style={s_styles.text_r}>{'  >      '}</Text>
                   </View>
               </TouchableOpacity>
               <View style={s_styles.block_b}></View>
@@ -43,7 +43,7 @@ export default function ProfileContainer({navigation}){
                     <Text style={s_styles.text_l}>     친구</Text>
                   </View>
                   <View style={s_styles.block_r}>
-                    <Text style={s_styles.text_r}>{'>      '}</Text>
+                    <Text style={s_styles.text_r}>{'  >      '}</Text>
                   </View>
               </TouchableOpacity>
               <View style={s_styles.block_b}></View>

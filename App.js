@@ -96,7 +96,7 @@ export default function App(){
         <Stack.Screen name="alarm" component={Alarm} />
         <Stack.Screen name="report" component={Report} />
         <Stack.Screen name="walk_navi" component={Walk_navi} options={{headerShown:false}} />
-        <Stack.Screen name="account" component={Account} />
+        <Stack.Screen name="account" component={Account} options={{ title: ' ' }}/>
         <Stack.Screen name="puppy_navi" component={Puppy_navi} options={{headerShown:false}}/>
         <Stack.Screen name="friend_navi" component={Friend_navi} options={{headerShown:false}}/>
       </Stack.Navigator>
