@@ -68,10 +68,16 @@ function Walk_navi(){
   );
 }
 
-function Puppy_navi(){
+function Puppy_navi({navigation}){
   return(
     <Stack.Navigator>
-      <Stack.Screen name="puppy_list" component={Puppy_list} />
+      <Stack.Screen name="puppy_list" component={Puppy_list} options={{ 
+          title: ' ',
+          headerRight: () => (
+            <TouchableOpacity activeOpacity={0.4} onPress={() => navigation.navigate('puppy_add')}>
+              <Text style={{color:'#FF9A17', fontWeight:'bold',fontSize: 22,}}>추가</Text>
+            </TouchableOpacity>
+          ),}}/>
       <Stack.Screen name="puppy_info" component={Puppy_info} />
       <Stack.Screen name="puppy_add" component={Puppy_add} />
     </Stack.Navigator>
