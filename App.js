@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Image, TouchableOpacity} from 'react-native';
+import { View, Text,Button,Image, TouchableOpacity} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -50,7 +50,8 @@ function LogoTitle(){
 function Tab_navi(){
   return(
     <Tab.Navigator initialRouteName="home"
-      screenOptions={{headerTitle:(props)=><LogoTitle{...props}/>}}>
+      screenOptions={{
+        headerTitle:(props)=><LogoTitle{...props}/>}}>
       <Tab.Screen name="home" component={Home} />
       <Tab.Screen name="walk" component={Walk} />
       <Tab.Screen name="profile" component={Profile} />
@@ -96,7 +97,13 @@ export default function App(){
         <Stack.Screen name="alarm" component={Alarm} />
         <Stack.Screen name="report" component={Report} />
         <Stack.Screen name="walk_navi" component={Walk_navi} options={{headerShown:false}} />
-        <Stack.Screen name="account" component={Account} options={{ title: ' ' }}/>
+        <Stack.Screen name="account" component={Account} options={{ 
+          title: ' ',
+          headerRight: () => (
+            <TouchableOpacity activeOpacity={0.4} onPress={() => alert('완료')}>
+              <Text style={{color:'#FF9A17', fontWeight:'bold',fontSize: 22,}}>완료</Text>
+            </TouchableOpacity>
+          ),}}/>
         <Stack.Screen name="puppy_navi" component={Puppy_navi} options={{headerShown:false}}/>
         <Stack.Screen name="friend_navi" component={Friend_navi} options={{headerShown:false}}/>
       </Stack.Navigator>
