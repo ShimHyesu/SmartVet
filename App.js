@@ -79,7 +79,13 @@ function Puppy_navi({navigation}){
             </TouchableOpacity>
           ),}}/>
       <Stack.Screen name="puppy_info" component={Puppy_info} />
-      <Stack.Screen name="puppy_add" component={Puppy_add} />
+      <Stack.Screen name="puppy_add" component={Puppy_add} options={{ 
+          title: ' ',
+          headerRight: () => (
+            <TouchableOpacity activeOpacity={0.4} onPress={() => alert('완료')}>
+              <Text style={{color:'#FF9A17', fontWeight:'bold',fontSize: 22,}}>완료</Text>
+            </TouchableOpacity>
+          ),}}/>
     </Stack.Navigator>
   );
 }
@@ -92,6 +98,7 @@ function Friend_navi(){
     </Stack.Navigator>
   );
 }
+
 
 export default function App(){
   return(
@@ -116,4 +123,3 @@ export default function App(){
     </NavigationContainer>
   );
 }
-

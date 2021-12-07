@@ -1,10 +1,21 @@
-import React from 'react';
+import React, { Component } from 'react';
 import {View, Text,StyleSheet,Image, TouchableOpacity, TextInput,KeyboardAvoidingView} from 'react-native';
-import {launchCamera,launchImageLibrary} from 'react-native-image-picker';
 
 
-export default function AccountContainer(){
-    const [text, onChangeText] = React.useState(null);
+export default class AccountContainer extends Component{
+    //const [text, onChangeText] = React.useState(null);
+    state={
+      email: 'hong12@konkuk.ac.kr',
+      name: "홍길동",
+      src: "https://ifh.cc/g/U8hH86.png",
+    };
+    onChangeInput_name = event => {
+      this.setState({
+        name: event,
+      });
+    };
+
+    render(){
     return(
         <KeyboardAvoidingView
          behavior={Platform.OS === "ios" ? "padding" : "height"}
@@ -15,7 +26,7 @@ export default function AccountContainer(){
                   <View style={ph_styles.background}>
                     <Image
                     style={{height:'95%',width:'100%',resizeMode:'contain'}}
-                    source={require('../asset/userphoto_null.png')}/>
+                    source={{uri:this.state.src}}/>
                   </View>
                   <View style={ph_styles.icon}>
                   <Image 
@@ -29,7 +40,7 @@ export default function AccountContainer(){
                         <Text style={in_styles.text_l}>     이메일</Text>
                     </View>
                     <View style={in_styles.block_m}>
-                        <Text style={in_styles.text_m}>(이메일)</Text>
+                        <Text style={in_styles.text_m}>{this.state.email}</Text>
                     </View>
                     <View style={in_styles.block_r}>
                         <Text style={in_styles.text_r}>{'      '}</Text>
@@ -41,9 +52,9 @@ export default function AccountContainer(){
                     </View>
                     <View style={in_styles.block_m}>
                         <TextInput style={in_styles.text_m}
-                            onChangeText={onChangeText}
-                            value={text}
-                            placeholder="닉네임"/>
+                            onChangeText={this.onChangeInput_name}
+                            value={this.state.name}
+                            placeholder="(닉네임)"/>
                     </View>
                     <View style={in_styles.block_r}>
                         <Text style={in_styles.text_r}>{'  >      '}</Text>
@@ -52,6 +63,7 @@ export default function AccountContainer(){
             </View>
         </KeyboardAvoidingView>
     );
+}
 }
 
 const ac_styles = StyleSheet.create({

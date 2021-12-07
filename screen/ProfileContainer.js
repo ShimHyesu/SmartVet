@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { StyleSheet,View, Text ,Button,Image, TouchableOpacity} from 'react-native';
 
 export default function ProfileContainer({navigation}){
@@ -51,6 +51,7 @@ export default function ProfileContainer({navigation}){
         </View>
     );
 }
+
 
 const pf_styles = StyleSheet.create({
     container:{
