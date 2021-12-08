@@ -1,10 +1,10 @@
 import React from 'react';
-import { View, Text,Button,Image, TouchableOpacity} from 'react-native';
+import { View, Text, Button, Image, TouchableOpacity, Dimensions, StyleSheet} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { useNavigation } from '@react-navigation/native';
-
+import { Platform, PermissionsAndroid } from "react-native";
 import Loading from './screen/LoadingContainer';
 import LogJoin from './screen/LogJoinContainer'
 import Login from './screen/LoginContainer';
@@ -13,7 +13,6 @@ import Home from './screen/HomeContainer';
 import Walk from './screen/WalkContainer';
 import Profile from './screen/ProfileContainer';
 import Alarm from './screen/AlarmContainer';
-import Report from './screen/ReportContainer';
 import Walk_add from './screen/Walk_addContainer';
 import Walk_tracking from './screen/Walk_trackingContainer';
 import Account from './screen/AccountContainer';
@@ -108,7 +107,6 @@ export default function App(){
         <Stack.Screen name="logjoin_navi" component={LogJoin_navi} options={{headerShown:false}} />
         <Stack.Screen name="tab_navi" component={Tab_navi} options={{headerShown:false}}/>
         <Stack.Screen name="alarm" component={Alarm} />
-        <Stack.Screen name="report" component={Report} />
         <Stack.Screen name="walk_navi" component={Walk_navi} options={{headerShown:false}} />
         <Stack.Screen name="account" component={Account} options={{ 
           title: ' ',
