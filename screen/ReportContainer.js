@@ -47,7 +47,7 @@ export default function ReportContainer({navigation}){
     
     const petName="쩨리";
     const outNum=6;
-    const outTime="00:09;
+    const outTime="00:09";
     const NumBool="감소";
     const TimeBool="감소";
     
