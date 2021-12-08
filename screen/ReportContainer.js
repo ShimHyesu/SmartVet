@@ -1,13 +1,13 @@
 import React , { useEffect, useState } from 'react';
 import { View, Text, TouchableOpacity, Image, StyleSheet,  Dimensions } from 'react-native';
-import { initializeApp } from 'firebase/app';
-import { collection, getDocs, query, where, getFirestore } from "firebase/firestore";
+//import { initializeApp } from 'firebase/app';
+//import { collection, getDocs, query, where, getFirestore } from "firebase/firestore";
 import {Calendar, CalendarList, Agenda, LocaleConfig} from 'react-native-calendars';
 import { LogBox } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 LogBox.ignoreLogs(['Setting a timer']);
-
+/*
 const firebaseConfig = {
   apiKey: "AIzaSyAdMdxnx6Biw2-7fZ-gnXIyiAYNFs6TMyI",
   authDomain: "smartvet-19c4a.firebaseapp.com",
@@ -20,6 +20,7 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
+*/
 LocaleConfig.locales['ko'] = {
   monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
   monthNamesShort: ['Jan.', 'Feb.', 'Mar', 'Apr', 'May', 'Jun', 'Jul.', 'Aug', 'Sep.', 'Oct.', 'Nov.', 'Dec.'],
