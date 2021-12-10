@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import { StyleSheet,View, Text ,Button,Image, TouchableOpacity} from 'react-native';
 
 export default function ProfileContainer({navigation}){

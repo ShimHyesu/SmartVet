@@ -23,6 +23,7 @@ import Puppy_add from './screen/Puppy_addContainer';
 import Friend_list from './screen/Friend_listContainer';
 import Friend_add from './screen/Friend_addContainer';
 
+
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 

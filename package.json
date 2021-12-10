@@ -20,7 +20,7 @@
     "react-native-calendars": "^1.1271.0",
     "react-native-camera": "^4.2.1",
     "react-native-elements": "git+https://github.com/react-native-elements/react-native-elements.git#dist",
-    "react-native-image-picker": "^4.4.0",
+    "react-native-image-picker": "^4.4.2",
     "react-native-keyboard-aware-scroll-view": "^0.9.5",
     "react-native-modal": "^13.0.0",
     "react-native-plotly": "^5.0.0",
