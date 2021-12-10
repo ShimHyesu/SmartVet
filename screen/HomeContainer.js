@@ -16,10 +16,13 @@ export default function HomeContainer({navigation}) {
   React.useLayoutEffect(() => {
     navigation.setOptions({
       headerRight: () => (
-        <TouchableOpacity activeOpacity={0.8} onPress={() =>navigation.navigate('alarm')}>
-            <Image
-            style={{ width: 20, height: 25,marginRight:20}}
-            source={require('../asset/alarm.png')}/>
+        <TouchableOpacity
+          activeOpacity={0.8}
+          onPress={() => navigation.navigate('alarm')}>
+          <Image
+            style={{width: 20, height: 25, marginRight: 20}}
+            source={require('../asset/alarm.png')}
+          />
         </TouchableOpacity>
       ),
     });
@@ -27,75 +30,112 @@ export default function HomeContainer({navigation}) {
 
   return (
     <View style={home_styles.container}>
-      <TouchableOpacity
-        style={home_styles.alamButton}
-        activeOpacity={0.8}
-        onPress={() => navigation.navigate('alarm')}>
-        <Image source={require('../asset/pet1.png')} resizeMode="stretch" />
-      </TouchableOpacity>
-      <View style={home_styles.container}>
-        <ScrollView
-          contentContainerStyle={home_styles.scrollView}
-          horizontal={true}
-          pagingEnabled={true}>
-          <View style={home_styles.view}>
-            <View style={home_styles.pet_box}>
-              <View style={home_styles.imgContainer}>
-                <Image
-                  source={require('../asset/pet1.png')}
-                  resizeMode="stretch"
-                />
+      <ScrollView
+        contentContainerStyle={home_styles.scrollView}
+        horizontal={true}
+        pagingEnabled={true}>
+        <View style={home_styles.view}>
+          <View style={home_styles.pet_box}>
+            <View style={home_styles.imgContainer}>
+              <Image
+                source={require('../asset/pet1.png')}
+                resizeMode="stretch"
+              />
+            </View>
+            <View style={home_styles.nameContainer}>
+              <Text style={home_styles.nameText}>쩨리</Text>
+              <Text>권장 산책량 : 40min</Text>
+            </View>
+            <View style={home_styles.graphContainer}>
+              <View style={home_styles.monday}>
+                <Text style={home_styles.weekdayText}>월</Text>
+                <View style={home_styles.barGraph}></View>
+                <Text style={home_styles.minText}>55min</Text>
               </View>
-              <View style={home_styles.nameContainer}>
-                <Text style={home_styles.nameText}>쩨리</Text>
-                <Text>권장 산책량 : 40min</Text>
+              <View style={home_styles.tuesday}>
+                <Text style={home_styles.weekdayText}>화</Text>
+                <View style={home_styles.barGraph}></View>
+                <Text style={home_styles.minText}>42min</Text>
               </View>
-              <View style={home_styles.graphContainer}>
-                <Text>월 55min</Text>
-                <Text>화 42min</Text>
-                <Text>수 21min</Text>
-                <Text>목 41min</Text>
-                <Text>금 </Text>
-                <Text>토 </Text>
-                <Text>일 </Text>
+              <View style={home_styles.wednesday}>
+                <Text style={home_styles.weekdayText}>수</Text>
+                <View style={home_styles.barGraph1}></View>
+                <Text style={home_styles.minText}>21min</Text>
+              </View>
+              <View style={home_styles.thursday}>
+                <Text style={home_styles.weekdayText}>목</Text>
+                <View style={home_styles.barGraph}></View>
+                <Text style={home_styles.minText}>41min</Text>
+              </View>
+              <View style={home_styles.friday}>
+                <Text style={home_styles.weekdayText}>금</Text>
+                <Text style={home_styles.minText}></Text>
+              </View>
+              <View style={home_styles.saturday}>
+                <Text style={home_styles.weekdayText}>토</Text>
+                <Text style={home_styles.minText}></Text>
+              </View>
+              <View style={home_styles.sunday}>
+                <Text style={home_styles.weekdayText}>일</Text>
+                <Text style={home_styles.minText}></Text>
               </View>
             </View>
           </View>
-          <View style={home_styles.view}>
-            <View style={home_styles.pet_box}>
-              <View style={home_styles.imgContainer}>
-                <Image
-                  source={require('../asset/pet2.png')}
-                  resizeMode="stretch"
-                />
+        </View>
+        <View style={home_styles.view}>
+          <View style={home_styles.pet_box}>
+            <View style={home_styles.imgContainer}>
+              <Image
+                source={require('../asset/pet2.png')}
+                resizeMode="stretch"
+              />
+            </View>
+            <View style={home_styles.nameContainer}>
+              <Text style={home_styles.nameText}>보리</Text>
+              <Text>권장 산책량 : 40min</Text>
+            </View>
+            <View style={home_styles.graphContainer}>
+              <View style={home_styles.monday}>
+                <Text style={home_styles.weekdayText}>월</Text>
+                <View style={home_styles.barGraph}></View>
+                <Text style={home_styles.minText}>48min</Text>
               </View>
-              <View style={home_styles.nameContainer}>
-                <Text style={home_styles.nameText}>보리</Text>
-                <Text>권장 산책량 : 45min</Text>
+              <View style={home_styles.tuesday}>
+                <Text style={home_styles.weekdayText}>화</Text>
+                <View style={home_styles.barGraph2}></View>
+                <Text style={home_styles.minText}>12min</Text>
               </View>
-              <View style={home_styles.graphContainer}>
-                <Text>월 55min</Text>
-                <Text>화 42min</Text>
-                <Text>수 21min</Text>
-                <Text>목 41min</Text>
-                <Text>금 </Text>
-                <Text>토 </Text>
-                <Text>일 </Text>
+              <View style={home_styles.wednesday}>
+                <Text style={home_styles.weekdayText}>수</Text>
+                <View style={home_styles.barGraph}></View>
+                <Text style={home_styles.minText}>55min</Text>
+              </View>
+              <View style={home_styles.thursday}>
+                <Text style={home_styles.weekdayText}>목</Text>
+                <View style={home_styles.barGraph3}></View>
+                <Text style={home_styles.minText}>32min</Text>
+              </View>
+              <View style={home_styles.friday}>
+                <Text style={home_styles.weekdayText}>금</Text>
+                <Text style={home_styles.minText}></Text>
+              </View>
+              <View style={home_styles.saturday}>
+                <Text style={home_styles.weekdayText}>토</Text>
+                <Text style={home_styles.minText}></Text>
+              </View>
+              <View style={home_styles.sunday}>
+                <Text style={home_styles.weekdayText}>일</Text>
+                <Text style={home_styles.minText}></Text>
               </View>
             </View>
           </View>
-          <View style={home_styles.view}>
-            <View style={home_styles.pet_box}>
-              <View style={home_styles.imgContainer}>
-                <Image
-                  source={require('../asset/pet1.png')}
-                  resizeMode="stretch"
-                />
-              </View>
-            </View>
+        </View>
+        <View style={home_styles.view}>
+          <View style={home_styles.pet_box}>
+            <Text style={home_styles.plusText}>+</Text>
           </View>
-        </ScrollView>
-      </View>
+        </View>
+      </ScrollView>
     </View>
   );
 }
@@ -104,7 +144,7 @@ const home_styles = StyleSheet.create({
     flex: 1,
   },
   scrollView: {
-    backgroundColor: 'pink',
+    backgroundColor: 'white',
   },
   view: {
     justifyContent: 'center',
@@ -118,7 +158,7 @@ const home_styles = StyleSheet.create({
     borderRadius: 40,
     width: '80%',
     height: '90%',
-    backgroundColor: '#d3d3d3',
+    backgroundColor: '#EEEBEB',
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -147,5 +187,90 @@ const home_styles = StyleSheet.create({
   alamButton: {
     width: '5%',
     height: '5%',
+  },
+
+  monday: {
+    flexDirection: 'row',
+    position: 'absolute',
+    left: '15%',
+    top: '25%',
+  },
+  tuesday: {
+    flexDirection: 'row',
+    position: 'absolute',
+    left: '15%',
+    top: '33%',
+  },
+  wednesday: {
+    flexDirection: 'row',
+    position: 'absolute',
+    left: '15%',
+    top: '41%',
+  },
+  thursday: {
+    flexDirection: 'row',
+    position: 'absolute',
+    left: '15%',
+    top: '49%',
+  },
+  friday: {
+    flexDirection: 'row',
+    position: 'absolute',
+    left: '15%',
+    top: '57%',
+  },
+  saturday: {
+    flexDirection: 'row',
+    position: 'absolute',
+    left: '15%',
+    top: '65%',
+  },
+  sunday: {
+    flexDirection: 'row',
+    position: 'absolute',
+    left: '15%',
+    top: '73%',
+  },
+  weekdayText: {
+    lineHeight: 21,
+    fontWeight: 'bold',
+    fontSize: 18,
+  },
+  minText: {
+    marginLeft: '5%',
+    fontSize: 13,
+    fontWeight: 'normal',
+  },
+  barGraph: {
+    backgroundColor: '#FF9A17',
+    marginLeft: 10,
+    borderRadius: 50,
+    height: '50%',
+    width: '60%',
+  },
+  barGraph1: {
+    backgroundColor: '#FF9A17',
+    marginLeft: 10,
+    borderRadius: 50,
+    height: '50%',
+    width: '31.5%',
+  },
+  barGraph2: {
+    backgroundColor: '#FF9A17',
+    marginLeft: 10,
+    borderRadius: 50,
+    height: '50%',
+    width: '48%',
+  },
+  barGraph3: {
+    backgroundColor: '#FF9A17',
+    marginLeft: 10,
+    borderRadius: 50,
+    height: '50%',
+    width: '48%',
+  },
+  plusText: {
+    fontSize: 150,
+    fontWeight: '500',
   },
 });
