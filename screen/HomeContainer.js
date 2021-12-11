@@ -37,10 +37,11 @@ export default function HomeContainer({navigation}) {
         <View style={home_styles.view}>
           <View style={home_styles.pet_box}>
             <View style={home_styles.imgContainer}>
-              <Image
-                source={require('../asset/pet1.png')}
-                resizeMode="stretch"
-              />
+              <TouchableOpacity
+                activeOpacity={0.8}
+                onPress={() => navigation.navigate('alarm')}>
+                <Image source={require('../asset/pet1.png')} />
+              </TouchableOpacity>
             </View>
             <View style={home_styles.nameContainer}>
               <Text style={home_styles.nameText}>쩨리</Text>
@@ -85,10 +86,11 @@ export default function HomeContainer({navigation}) {
         <View style={home_styles.view}>
           <View style={home_styles.pet_box}>
             <View style={home_styles.imgContainer}>
-              <Image
-                source={require('../asset/pet2.png')}
-                resizeMode="stretch"
-              />
+              <TouchableOpacity
+                activeOpacity={0.8}
+                onPress={() => navigation.navigate('alarm')}>
+                <Image source={require('../asset/pet2.png')} />
+              </TouchableOpacity>
             </View>
             <View style={home_styles.nameContainer}>
               <Text style={home_styles.nameText}>보리</Text>
@@ -132,7 +134,11 @@ export default function HomeContainer({navigation}) {
         </View>
         <View style={home_styles.view}>
           <View style={home_styles.pet_box}>
-            <Text style={home_styles.plusText}>+</Text>
+            <TouchableOpacity
+              activeOpacity={0.8}
+              onPress={() => navigation.navigate('alarm')}>
+              <Text style={home_styles.plusText}>+</Text>
+            </TouchableOpacity>
           </View>
         </View>
       </ScrollView>
