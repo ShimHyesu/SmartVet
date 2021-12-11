@@ -32,8 +32,8 @@ function LogJoin_navi(){
   return(
     <Stack.Navigator>
       <Stack.Screen name="logjoin" component={LogJoin} options={{headerShown:false}}/>
-      <Stack.Screen name="login" component={Login} />
-      <Stack.Screen name="join" component={Join} />
+      <Stack.Screen name="login" component={Login} options={{ title: ' ',}}/>
+      <Stack.Screen name="join" component={Join} options={{ title: ' ',}}/>
     </Stack.Navigator>
   );
 }
