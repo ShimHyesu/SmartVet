@@ -4,6 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { useNavigation } from '@react-navigation/native';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import Loading from './screen/LoadingContainer';
 import LogJoin from './screen/LogJoinContainer'
@@ -48,11 +49,44 @@ function LogoTitle(){
   );
 }
 
+const TabBarIcon=(focused,name)=>{
+  let iconName, iconSize, iconColor;
+  
+  if(name=='home'){
+    iconName='home-outline'
+  }else if(name=='walk'){
+    iconName='paw-outline'
+  }else if(name=='profile'){
+    iconName='person-outline'
+  } 
+
+  iconSize=20
+  iconColor=focused?'#FF9A17':'#A6A6A6'
+  return (
+    <Ionicons
+    name={iconName}
+    color={iconColor}
+    size={iconSize} />
+    )
+
+}
+
+
+
 function Tab_navi(){
   return(
     <Tab.Navigator initialRouteName="home"
-      screenOptions={{
-        headerTitle:(props)=><LogoTitle{...props}/>}}>
+      tabBarOptions={{
+        activeTintColor:'#FF9A17',
+        inactiveTintColor:'#A6A6A6',
+      }}
+      screenOptions={({route})=>({
+        tabBarLabel:route.name,
+        tabBarIcon:({focused})=>(
+          TabBarIcon(focused,route.name)
+        ),
+        headerTitle:(props)=><LogoTitle{...props}/>
+      })}>
       <Tab.Screen name="home" component={Home} />
       <Tab.Screen name="walk" component={Walk} />
       <Tab.Screen name="profile" component={Profile} />
