@@ -35,6 +35,17 @@ export default function ReportContainer({navigation}){
     const[outTimeBoolbBef, setOutTimeBoolbBef]=useState([]);
     const[outTimeBoolbAft, setOutTimeBoolbAft]=useState([]);
 
+    const[outNumBoola, setOutNumBoola]=useState("");
+    const[outTimeBoola, setOutTimeBoola]=useState("");
+    const[outTimeBoolaStr, setOutTimeBoolaStr]=useState("");
+    const[outLevelBoolaOne, setOutLevelBoolaOne]=useState([]);
+    const[outLevelBoolaTwo, setOutLevelBoolaTwo]=useState([]);
+    const[outNumBoolb, setOutNumBoolb]=useState("");
+    const[outTimeBoolb, setOutTimeBoolb]=useState("");
+    const[outTimeBoolbStr, setOutTimeBoolbStr]=useState("");
+    const[outLevelBoolbOne, setOutLevelBoolbOne]=useState([]);
+    const[outLevelBoolbTwo, setOutLevelBoolbTwo]=useState([]);
+
     var month=new Date().getMonth();
     var year=new Date().getFullYear();
     const daysNum=new Date(year, month-1, 0);//전달 일수
@@ -85,23 +96,35 @@ export default function ReportContainer({navigation}){
           .collection("workoutlist")
           .where("petID", "in", opetListset)
           .get()
-          .then(querySnapshot => {//날짜형식 수정중
+          .then(querySnapshot => {
             querySnapshot.forEach(documentSnapshot => {
-            if(documentSnapshot.data().petID==opetListset[0]&&documentSnapshot.data().day.toDate().getMonth()==(month-2)) {
-              setOutNumBoolaBef(outNumBoolaBef => [...outNumBoolaBef, documentSnapshot.data().day.toDate()]);
+            if(documentSnapshot.data().petID==opetListset[0]&&documentSnapshot.data().day.toDate().getMonth()==(month-2)) {//0번펫 전전달 산책날짜
+              setOutNumBoolaBef(outNumBoolaBef => [...outNumBoolaBef, documentSnapshot.data().day.toDate().getFullYear()+"-"+(documentSnapshot.data().day.toDate().getMonth()+1)+"-"+documentSnapshot.data().day.toDate().getDate()]);
               setOutTimeBoolaBef(outTimeBoolaBef => [...outTimeBoolaBef, documentSnapshot.data().time]);
             }
-            else if(documentSnapshot.data().petID==opetListset[0]&&documentSnapshot.data().day.toDate().getMonth()==(month-1)) {
-              setOutNumBoolaAft(outNumBoolaAft => [...outNumBoolaAft, documentSnapshot.data().day.toDate()]);
+            else if(documentSnapshot.data().petID==opetListset[0]&&documentSnapshot.data().day.toDate().getMonth()==(month-1)) {//0번펫 전달 산책날짜
+              setOutNumBoolaAft(outNumBoolaAft => [...outNumBoolaAft, documentSnapshot.data().day.toDate().getFullYear()+"-"+(documentSnapshot.data().day.toDate().getMonth()+1)+"-"+documentSnapshot.data().day.toDate().getDate()]);
               setOutTimeBoolaAft(outTimeBoolaAft => [...outTimeBoolaAft, documentSnapshot.data().time]);
+              if(documentSnapshot.data().level==1) {
+                setOutLevelBoolaOne(outLevelBoolaOne => [...outLevelBoolaOne, documentSnapshot.data().day.toDate().getFullYear()+"-"+String(documentSnapshot.data().day.toDate().getMonth()+1).padStart(2,'0')+"-"+String(documentSnapshot.data().day.toDate().getDate()).padStart(2,'0')]);
+              }
+              else if(documentSnapshot.data().level==2) {
+                setOutLevelBoolaTwo(outLevelBoolaTwo => [...outLevelBoolaTwo, documentSnapshot.data().day.toDate().getFullYear()+"-"+String(documentSnapshot.data().day.toDate().getMonth()+1).padStart(2,'0')+"-"+String(documentSnapshot.data().day.toDate().getDate()).padStart(2,'0')]);
+              }
             }
-            else if(documentSnapshot.data().petID==opetListset[1]&&documentSnapshot.data().day.toDate().getMonth()==(month-2)) {
-              setOutNumBoolbBef(outNumBoolbBef => [...outNumBoolbBef, documentSnapshot.data().day.toDate()]);
+            else if(documentSnapshot.data().petID==opetListset[1]&&documentSnapshot.data().day.toDate().getMonth()==(month-2)) {//1번펫 전전달 산책날짜
+              setOutNumBoolbBef(outNumBoolbBef => [...outNumBoolbBef, documentSnapshot.data().day.toDate().getFullYear()+"-"+(documentSnapshot.data().day.toDate().getMonth()+1)+"-"+documentSnapshot.data().day.toDate().getDate()]);
               setOutTimeBoolbBef(outTimeBoolbBef => [...outTimeBoolbBef, documentSnapshot.data().time]);
             }
-            else if(documentSnapshot.data().petID==opetListset[1]&&documentSnapshot.data().day.toDate().getMonth()==(month-1)) {
-              setOutNumBoolbAft(outNumBoolbAft => [...outNumBoolbAft, documentSnapshot.data().day.toDate()]);
+            else if(documentSnapshot.data().petID==opetListset[1]&&documentSnapshot.data().day.toDate().getMonth()==(month-1)) {//1번펫 전달 산책날짜
+              setOutNumBoolbAft(outNumBoolbAft => [...outNumBoolbAft, documentSnapshot.data().day.toDate().getFullYear()+"-"+(documentSnapshot.data().day.toDate().getMonth()+1)+"-"+documentSnapshot.data().day.toDate().getDate()]);
               setOutTimeBoolbAft(outTimeBoolbAft => [...outTimeBoolbAft, documentSnapshot.data().time]);
+              if(documentSnapshot.data().level==1) {
+                setOutLevelBoolbOne(outLevelBoolbOne => [...outLevelBoolbOne, documentSnapshot.data().day.toDate().getFullYear()+"-"+String(documentSnapshot.data().day.toDate().getMonth()+1).padStart(2,'0')+"-"+String(documentSnapshot.data().day.toDate().getDate()).padStart(2,'0')]);
+              }
+              else if(documentSnapshot.data().level==2) {
+                setOutLevelBoolbTwo(outLevelBoolbTwo => [...outLevelBoolbTwo, documentSnapshot.data().day.toDate().getFullYear()+"-"+String(documentSnapshot.data().day.toDate().getMonth()+1).padStart(2,'0')+"-"+String(documentSnapshot.data().day.toDate().getDate()).padStart(2,'0')]);
+              }
             }
           });
         });
@@ -114,19 +137,38 @@ export default function ReportContainer({navigation}){
         petUserMatching();
       }
     }, [opetN]);
+
+    const numBool = async() => {
+      if((outNumBoolaAft.length>=outNumBoolaBef.length)&&outNumBoolaAft.length!=0) {
+        setOutNumBoola("증가");
+      }
+      else if((outNumBoolbAft.length>=outNumBoolbBef.length)&&outNumBoolbAft!=0) {
+        setOutNumBoolb("증가");
+      }
+      else if((outNumBoolaAft.length<outNumBoolaBef.length)||outNumBoolaAft==0) {
+        setOutNumBoola("감소");
+      }
+      else if((outNumBoolbAft.length<outNumBoolbBef.length)||outNumBoolbAft==0) {
+        setOutNumBoolb("감소");
+      }
+    };
+  
+    useEffect(() => {
+      numBool();
+    });
     
     //const petURL='./'+opetURL[0];//opetN[0].photoURL
     //var petURL=require('./'+opetURL[0]);
 
     const petNamea=Array.from(new Set(opetN))[0];
-    const outNuma=6;
+    const outNuma=outNumBoolaAft.length;
     const outTimea="00:09";
-    const NumBoola="감소";
+    const NumBoola=outNumBoola;
     const TimeBoola="감소";
     const petNameb=Array.from(new Set(opetN))[1];
-    const outNumb=3;
-    const outTimeb="00:03";//전달 총 산책시간/전달 총 일수
-    const NumBoolb="증가";
+    const outNumb=outNumBoolbAft.length;
+    const outTimeb="00:03";
+    const NumBoolb=outNumBoolb;
     const TimeBoolb="증가";
     const obja={
       '2021-11-02': {marked: true, selected: true, selectedColor: '#FF6600', dotColor: '#FF6600'},
@@ -302,7 +344,7 @@ export default function ReportContainer({navigation}){
     else {
       return (
         <View style={styles.container}>
-          <Text style={styles.header}>활동 보고서가 없습니다.</Text>
+          <Text>...</Text>
         </View>
       );
     }
@@ -323,13 +365,6 @@ const styles = StyleSheet.create({
     top: 10,
     left: 10,
     bottom: 10,
-  },
-  header: {
-    fontSize: 25,
-    fontWeight: 'bold',
-    //paddingBottom: 5,
-    textAlign: 'center',
-    color: 'black',
   },
   name: {
     fontSize: 22,
