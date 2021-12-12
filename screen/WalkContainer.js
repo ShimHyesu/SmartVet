@@ -18,6 +18,7 @@ async function requestPositionPermission() {
   }
 }
 
+// main
 export default function WalkContainer({navigation}){
 
     const [location, setLocation] = useState();
