@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text ,Button} from 'react-native';
 
+// main
 export default function WalkContainer({navigation}){
     return(
         <View>
