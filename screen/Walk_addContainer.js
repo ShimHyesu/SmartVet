@@ -1,11 +1,57 @@
 import React, { useState, useEffect, Component } from 'react';
 import { CheckBox, StyleSheet, View, Text, Button, Image, TouchableOpacity} from 'react-native';
 
-export default function Walk_addContainer(){
+export default function Walk_addContainer({navigation}){
+
     return(
-        <View>
-            <Text>walk add screen</Text>
+        <View style={pf_styles.container}>
             
+
+            <View style={pf_styles.select}>
+              <TouchableOpacity style={s_styles.button}>
+                  <View style={s_styles.block_l}>
+                    <Text style={s_styles.text_l}>     날짜</Text>
+                  </View>
+                  <View style={s_styles.block_r}>
+                    <Text style={s_styles.text_r}>{'  2021년 11월 3일      '}</Text>
+                  </View>
+                  </TouchableOpacity>
+              
+              <View style={s_styles.block_b}></View>
+              <TouchableOpacity style={s_styles.button}>
+                  <View style={s_styles.block_l}>
+                    <Text style={s_styles.text_l}>     산책할 아이</Text>
+                  </View>
+              </TouchableOpacity>
+
+              <TouchableOpacity style={pf_styles.checkboxContainer_1}>
+                
+              <CheckBox
+                style={pf_styles.checkbox_1}
+                />
+
+              <Text style={pf_styles.label}>쩨리
+              </Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity style={pf_styles.checkboxContainer_2}>
+              <CheckBox
+                style={pf_styles.checkbox_2}
+              />
+              <Text style={pf_styles.label}>보리
+              </Text>
+            </TouchableOpacity>
+
+              <TouchableOpacity style={s_styles.button}>
+                  <View style={s_styles.block_l}>
+                    <Text style={s_styles.text_l}>     산책 시간</Text>
+                  </View>
+                  <View style={s_styles.block_r}>
+                    <Text style={s_styles.text_r}>{'  47분  >      '}</Text>
+                  </View>
+              </TouchableOpacity>
+
+            </View>
         </View>
     );
 }
@@ -87,3 +133,5 @@ const pf_styles = StyleSheet.create({
       fontWeight: "bold",
     },
   });
+
+  //

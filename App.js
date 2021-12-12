@@ -71,16 +71,12 @@ const TabBarIcon=(focused,name)=>{
 
 }
 
-
-
 function Tab_navi(){
   return(
     <Tab.Navigator initialRouteName="home"
-      tabBarOptions={{
-        activeTintColor:'#FF9A17',
-        inactiveTintColor:'#A6A6A6',
-      }}
       screenOptions={({route})=>({
+        tabBarActiveTintColor:'#FF9A17',
+        tabBarInactiveTintColor:'#A6A6A6',
         tabBarLabel:route.name,
         tabBarIcon:({focused})=>(
           TabBarIcon(focused,route.name)
