@@ -1,6 +1,5 @@
 import React, { useState, useEffect, Component } from 'react';
-import { StyleSheet, View, Text, Button, Image, TouchableOpacity} from 'react-native';
-import { CheckBox } from 'react-native-elements';
+import { CheckBox, StyleSheet, View, Text, Button, Image, TouchableOpacity} from 'react-native';
 export default function Walk_addContainer({navigation}){
 
     return(
@@ -133,3 +132,5 @@ const pf_styles = StyleSheet.create({
       fontWeight: "bold",
     },
   });
+
+  //
