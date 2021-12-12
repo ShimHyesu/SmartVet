@@ -88,7 +88,7 @@ export default function Walk_trackingContainer(){
     }, []);
 
     const [currentHours, setCurrentHours] = useState(0);
-    const [CurrentMinutes, setCurrentMinutes] = useState(0);
+    const [currentMinutes, setCurrentMinutes] = useState(0);
     const [currentSeconds, setCurrentSeconds] = useState(0);
     const {count, start, stop, reset} = useCounter(0, 1000);
 
@@ -145,7 +145,7 @@ export default function Walk_trackingContainer(){
                  )}
             
                 {currentHours < 10 ? `0${currentHours}` : currentHours}: 
-                {CurrentMinutes < 10 ? `0${CurrentMinutes}` : CurrentMinutes}: 
+                {currentMinutes < 10 ? `0${currentMinutes}` : currentMinutes}: 
                 {currentSeconds < 10 ? `0${currentSeconds}` : currentSeconds}
                 
                 <Button>
