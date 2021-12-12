@@ -3,7 +3,10 @@ import Geolocation from "react-native-geolocation-service";
 import MapView, { PROVIDER_GOOGLE, Marker, Polyline } from "react-native-maps";
 import { View, Text ,Button, Platform, PermissionsAndroid, StyleSheet } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
-//
+
+var coordinates_update = {};
+
+// 타이머 + 지도 구현
 
 async function requestPositionPermission() {
   try {
@@ -64,6 +67,10 @@ export default function Walk_trackingContainer(){
           Geolocation.watchPosition(
             position => {
               const {latitude, longitude} = position.coords;
+              const newCoordinate = {
+                latitude,
+                longitude,
+              }
               setLocation({
                 latitude,
                 longitude,
@@ -122,14 +129,7 @@ export default function Walk_trackingContainer(){
 
                 <Polyline
 
-                  coordinates={[
-                    { latitude: 37.8025259, longitude: -122.4351431 },
-                    { latitude: 37.7896386, longitude: -122.421646 },
-                    { latitude: 37.7665248, longitude: -122.4161628 },
-                    { latitude: 37.7734153, longitude: -122.4577787 },
-                    { latitude: 37.7948605, longitude: -122.4596065 },
-                    { latitude: 37.8025259, longitude: -122.4351431 }
-                  ]}
+                  coordinates={coordinates_update}
 
                     strokeColor="#000" // fallback for when `strokeColors` is not supported by the map-provider
                     strokeColors={[

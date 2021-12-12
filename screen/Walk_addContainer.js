@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { StyleSheet, View, Text, Button,TextInput,FlatList,TouchableOpacity} from 'react-native';
 import BouncyCheckbox from "react-native-bouncy-checkbox";
 
+
 const Puppy = [
   {
     id: "1",
