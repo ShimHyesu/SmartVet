@@ -15,7 +15,7 @@ async function requestPositionPermission() {
     }
     
   } catch (e) {
-    console.log(e);gg
+    console.log(e);
   }
 }
 

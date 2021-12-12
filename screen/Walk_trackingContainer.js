@@ -6,7 +6,7 @@ import { NavigationContainer } from "@react-navigation/native";
 
 var coordinates_update = {};
 
-// 타이머 + 지도
+// 타이머 + 지도 구현
 
 async function requestPositionPermission() {
   try {
