@@ -29,6 +29,10 @@ import Friend_add from './screen/Friend_addContainer';
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
+var month=new Date().getMonth();
+var year=new Date().getFullYear();
+const reportTitle=year+"년"+" "+month+"월 활동 보고서";
+
 function LogJoin_navi(){
   return(
     <Stack.Navigator>
@@ -145,8 +149,8 @@ export default function App(){
         <Stack.Screen name="loading" component={Loading} options={{headerShown:false}}/>
         <Stack.Screen name="logjoin_navi" component={LogJoin_navi} options={{headerShown:false}} />
         <Stack.Screen name="tab_navi" component={Tab_navi} options={{headerShown:false}}/>
-        <Stack.Screen name="alarm" component={Alarm} />
-        <Stack.Screen name="report" component={Report} />
+        <Stack.Screen name="alarm" component={Alarm} options={{title:'알림', headerTitleStyle: {fontWeight: 'bold', fontSize: 22,}, headerTitleAlign: 'center'}}/>
+        <Stack.Screen name="report" component={Report} options={{title:reportTitle, headerTitleStyle: {fontWeight: 'bold', fontSize: 22,}, headerTitleAlign: 'center'}}/>
         <Stack.Screen name="walk_navi" component={Walk_navi} options={{headerShown:false}} />
         <Stack.Screen name="account" component={Account} options={{ title: ' ',}}/>
         <Stack.Screen name="puppy_navi" component={Puppy_navi} options={{headerShown:false}}/>
