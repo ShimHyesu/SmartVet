@@ -1,5 +1,8 @@
 import React, { useState, useEffect, Component } from 'react';
 import { CheckBox, StyleSheet, View, Text, Button, Image, TouchableOpacity} from 'react-native';
+
+// 산책 수동추가
+
 export default function Walk_addContainer({navigation}){
 
     return(

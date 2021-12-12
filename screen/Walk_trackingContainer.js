@@ -3,7 +3,8 @@ import Geolocation from "react-native-geolocation-service";
 import MapView, { PROVIDER_GOOGLE, Marker, Polyline } from "react-native-maps";
 import { View, Text ,Button, Platform, PermissionsAndroid, StyleSheet } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
-//
+
+// 타이머 + 지도
 
 async function requestPositionPermission() {
   try {

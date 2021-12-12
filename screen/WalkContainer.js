@@ -3,7 +3,8 @@ import Geolocation from "react-native-geolocation-service";
 import MapView, { PROVIDER_GOOGLE, Marker } from "react-native-maps";
 import { View, Text ,Button, Platform, PermissionsAndroid, StyleSheet } from "react-native";
 
-//
+// 산책 메인
+
 async function requestPositionPermission() {
   try {
       
@@ -14,7 +15,7 @@ async function requestPositionPermission() {
     }
     
   } catch (e) {
-    console.log(e);
+    console.log(e);gg
   }
 }
 
