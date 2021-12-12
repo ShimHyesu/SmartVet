@@ -1,139 +1,142 @@
-import React, { useState, useEffect, Component } from 'react';
-import { CheckBox, StyleSheet, View, Text, Button, Image, TouchableOpacity} from 'react-native';
+import React, { useState } from 'react';
+import { StyleSheet, View, Text, Button,TextInput,FlatList,TouchableOpacity} from 'react-native';
+import BouncyCheckbox from "react-native-bouncy-checkbox";
 
-// 산책 수동추가
+
+const Puppy = [
+  {
+    id: "1",
+    name:"쩨리",
+  },
+  {
+    id: "2",
+    name: "보리",
+  },
+];
 
 export default function Walk_addContainer({navigation}){
+  const [today] = useState('2021년 12월 13일');
+  const [time,setTime]=useState('');
+  const [checked, setChecked] = useState(false);
+
+  const onChangeInput_time= () => {
+    setTime(time);
+  };
+
+  const renderPuppy = ({ item }) => {
+    return(
+        <View style={wa_styles.check}>
+          <BouncyCheckbox
+            style={{ marginTop: 16 }}
+            isChecked={checked}
+            text={item.name}
+            textStyle={{
+              textDecorationLine: "none",
+            }}
+            onPress={() => setChecked(!checked)}
+          />
+      </View>
+    );
+  }
 
     return(
-        <View style={pf_styles.container}>
-            
-
-            <View style={pf_styles.select}>
-              <TouchableOpacity style={s_styles.button}>
-                  <View style={s_styles.block_l}>
-                    <Text style={s_styles.text_l}>     날짜</Text>
-                  </View>
-                  <View style={s_styles.block_r}>
-                    <Text style={s_styles.text_r}>{'  2021년 11월 3일      '}</Text>
-                  </View>
-                  </TouchableOpacity>
-              
-              <View style={s_styles.block_b}></View>
-              <TouchableOpacity style={s_styles.button}>
-                  <View style={s_styles.block_l}>
-                    <Text style={s_styles.text_l}>     산책할 아이</Text>
-                  </View>
-              </TouchableOpacity>
-
-              <TouchableOpacity style={pf_styles.checkboxContainer_1}>
-                
-              <CheckBox
-                style={pf_styles.checkbox_1}
-                />
-
-              <Text style={pf_styles.label}>쩨리
-              </Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity style={pf_styles.checkboxContainer_2}>
-              <CheckBox
-                style={pf_styles.checkbox_2}
-              />
-              <Text style={pf_styles.label}>보리
-              </Text>
-            </TouchableOpacity>
-
-              <TouchableOpacity style={s_styles.button}>
-                  <View style={s_styles.block_l}>
-                    <Text style={s_styles.text_l}>     산책 시간</Text>
-                  </View>
-                  <View style={s_styles.block_r}>
-                    <Text style={s_styles.text_r}>{'  47분  >      '}</Text>
-                  </View>
-              </TouchableOpacity>
-
+        <View style={wa_styles.container}>
+            <View style={in_styles.button}>
+              <View style={in_styles.block_l}>
+                  <Text style={in_styles.text_l}>     날짜</Text>
+              </View>
+              <View style={in_styles.block_m}>
+                  <Text style={in_styles.text_m}>{today}</Text>
+              </View>
+              <View style={in_styles.block_r}>
+                  <Text style={in_styles.text_r}>{'      '}</Text>
+              </View>
             </View>
+            <View style={in_styles.button}>
+              <View style={in_styles.block_l}>
+                  <Text style={in_styles.text_l}>     산책할 아이</Text>
+              </View>
+            </View>
+            <View style={wa_styles.check_container}>
+                <FlatList
+                  data={Puppy}
+                  renderItem={renderPuppy}
+                  keyExtractor={(name) => name.id}
+                />
+            </View>
+            <View style={in_styles.button}>
+              <View style={in_styles.block_l}>
+                  <Text style={in_styles.text_l}>     산책 시간</Text>
+              </View>
+              <View style={in_styles.block_m}>
+                  <TextInput style={in_styles.text_m}
+                      onChangeText={onChangeInput_time}
+                      time={time}
+                      keyboardType="number-pad"
+                      placeholder=""/>
+              </View>
+              <View style={in_styles.block_m}>
+                  <Text style={in_styles.text_m}>분</Text>
+              </View>
+              <View style={in_styles.block_r}>
+                  <Text style={in_styles.text_r}>{'  >      '}</Text>
+              </View>
+            </View>
+
+            
         </View>
     );
 }
 
-const cb_styles = StyleSheet.create({
-
-});
-
-const pf_styles = StyleSheet.create({
+const wa_styles = StyleSheet.create({
     container:{
-      flex: 0.9,
-      backgroundColor: '#FFFFFF',
+     flex: 1,
+     backgroundColor: '#ffffff',
     },
-    checkboxContainer_1: {
+    check_container:{
       width:"100%",
-      height:"35%",
-      flexDirection: "row",
-      marginBottom: 0,
+      height:"20%",
+      backgroundColor:'#ffffff'
     },
-    checkboxContainer_2: {
-      width:"100%",
-      height:"35%",
-      flexDirection: "row",
-      marginBottom: 5,
-    },
-    checkbox_1: {
-      alignSelf: "center",
-    },
-    checkbox_2: {
-      alignSelf: "center",
-    },
-    label: {
-      margin: 8,
-    },
-    user:{
-      width:"100%",
-      height:"35%",
-      backgroundColor: '#FFFFFF',
-    },
-    select:{
-      width:"100%",
-      height:"40%",
-      backgroundColor: '#ffffff',
-      flexDirection: 'column',
-      alignItems: 'center',
-    },
+    check:{
+      flex:1,
+      backgroundColor:'#ffffff',
+      paddingLeft:30,
+    }
+    
   });
 
-  const s_styles =StyleSheet.create({
+  const in_styles=StyleSheet.create({
     button: {
       width:"100%",
-      height:"33%",
+      height:"15%",
       flexDirection: 'row',
       alignItems: "center",
       backgroundColor: "#ffffff",
-      padding: 10,
-    },
+      padding: 8,
+    }, 
     block_l:{
-      flex:1,
-      backgroundColor: '#ffffff',
+        flex:1,
+        backgroundColor: '#ffffff',
     },
-    block_r:{
-      backgroundColor: '#ffffff',
+    block_m:{
+        backgroundColor: '#ffffff',
     },
-    block_b:{
-      width:"85%",
-      height:0.8,
-      backgroundColor: '#A6A6A6',
-      opacity:0.8,
+      block_r:{
+        backgroundColor: '#ffffff',
     },
     text_l:{
-      fontSize: 20,
-      color: '#000000',
-      alignItems: 'center',
+        fontSize: 20,
+        color: '#000000',
+        alignItems: 'center',
     },
-    text_r:{
-      fontSize: 20,
-      color: '#A6A6A6',
-      fontWeight: "bold",
+    text_m:{
+        fontSize: 19,
+        color: '#A6A6A6',
+    },
+      text_r:{
+        fontSize: 20,
+        color: '#A6A6A6',
+        fontWeight: "bold",
     },
   });
-
-  //
