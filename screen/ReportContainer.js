@@ -45,6 +45,8 @@ export default function ReportContainer({navigation}){
     const[outTimeBoolbStr, setOutTimeBoolbStr]=useState("");
     const[outLevelBoolbOne, setOutLevelBoolbOne]=useState([]);
     const[outLevelBoolbTwo, setOutLevelBoolbTwo]=useState([]);
+    let obja = {};
+    let objb = {};
 
     var month=new Date().getMonth();
     var year=new Date().getFullYear();
@@ -156,34 +158,109 @@ export default function ReportContainer({navigation}){
     useEffect(() => {
       numBool();
     });
-    
-    //const petURL='./'+opetURL[0];//opetN[0].photoURL
-    //var petURL=require('./'+opetURL[0]);
+
+    const timeBool = async() => {
+      for(var i=0;i<2;i++) {
+        if(i==0) {
+          var befT=0;
+          var befM=0;
+          var aftT=0;
+          var aftM=0;
+          for(var m=0;m<outTimeBoolaBef.length;m++) {
+            var str=outTimeBoolaBef[m].split(':');
+            befT+=parseInt(str[0]);
+            befM+=parseInt(str[1]);
+          }
+          for(var n=0;n<outTimeBoolaAft.length;n++) {
+            var strr=outTimeBoolaAft[n].split(':');
+            aftT+=parseInt(strr[0]);
+            aftM+=parseInt(strr[1]);
+          }
+          var avgA=parseInt((aftT*60+aftM)/daysNum.getDate());
+          setOutTimeBoola(String(parseInt(avgA/60)).padStart(2,'0')+":"+String(avgA%60).padStart(2, '0'));
+          if((befT*60+befM)<=(aftT*60+aftM)) {
+            setOutTimeBoolaStr("증가");
+          }
+          else if((befT*60+befM)>(aftT*60+aftM)) {
+            setOutTimeBoolaStr("감소");
+          }
+        }
+        else if(i==1) {
+          var bbefT=0;
+          var bbefM=0;
+          var baftT=0;
+          var baftM=0;
+          for(var p=0;p<outTimeBoolbBef.length;p++) {
+            var sstr=outTimeBoolbBef[p].split(':');
+            bbefT+=parseInt(sstr[0]);
+            bbefM+=parseInt(sstr[1]);
+          }
+          for(var q=0;q<outTimeBoolbAft.length;q++) {
+            var sstrr=outTimeBoolbAft[q].split(':');
+            baftT+=parseInt(sstrr[0]);
+            baftM+=parseInt(sstrr[1]);
+          }
+          var avgB=parseInt((baftT*60+baftM)/daysNum.getDate());
+          setOutTimeBoolb(String(parseInt(avgB/60)).padStart(2, '0')+":"+String(avgB%60).padStart(2, '0'));
+          if((bbefT*60+bbefM)<=(baftT*60+baftM)) {
+            setOutTimeBoolbStr("증가");
+          }
+          else if((bbefT*60+bbefM)>(baftT*60+baftM)) {
+            setOutTimeBoolbStr("감소");
+          }
+        }
+      }
+    };
+  
+    useEffect(() => {
+      timeBool();
+    });
+
+    outLevelBoolaTwo.forEach(day => {
+      obja[day] = {
+        marked: true,
+        selected: true,
+        selectedColor: '#FFCC66',
+        dotColor: '#FFCC66',
+      };
+    })
+    outLevelBoolaOne.forEach(day => {
+      obja[day] = {
+        marked: true,
+        selected: true,
+        selectedColor: '#FF6600',
+        dotColor: '#FF6600',
+      };
+    })
+    outLevelBoolbTwo.forEach(day => {
+      objb[day] = {
+        marked: true,
+        selected: true,
+        selectedColor: '#FFCC66',
+        dotColor: '#FFCC66',
+      };
+    })
+    outLevelBoolbOne.forEach(day => {
+      objb[day] = {
+        marked: true,
+        selected: true,
+        selectedColor: '#FF6600',
+        dotColor: '#FF6600',
+      };
+    })
 
     const petNamea=Array.from(new Set(opetN))[0];
     const outNuma=outNumBoolaAft.length;
-    const outTimea="00:09";
+    const outTimea=outTimeBoola;
     const NumBoola=outNumBoola;
-    const TimeBoola="감소";
+    const TimeBoola=outTimeBoolaStr;
     const petNameb=Array.from(new Set(opetN))[1];
     const outNumb=outNumBoolbAft.length;
-    const outTimeb="00:03";
+    const outTimeb=outTimeBoolb;
     const NumBoolb=outNumBoolb;
-    const TimeBoolb="증가";
-    const obja={
-      '2021-11-02': {marked: true, selected: true, selectedColor: '#FF6600', dotColor: '#FF6600'},
-      '2021-11-03': {marked: true, selected: true, selectedColor: '#FFCC66', dotColor: '#FFCC66'},
-      '2021-11-06': {marked: true, selected: true, selectedColor: '#FFCC66', dotColor: '#FFCC66'},
-      '2021-11-07': {marked: true, selected: true, selectedColor: '#FF6600', dotColor: '#FF6600'}
-   };
-   const objb={
-    '2021-11-02': {marked: true, selected: true, selectedColor: '#FF6600', dotColor: '#FF6600'},
-    '2021-11-04': {marked: true, selected: true, selectedColor: '#FFCC66', dotColor: '#FFCC66'},
-    '2021-11-06': {marked: true, selected: true, selectedColor: '#FFCC66', dotColor: '#FFCC66'},
-    '2021-11-14': {marked: true, selected: true, selectedColor: '#FF6600', dotColor: '#FF6600'}
-   };
+    const TimeBoolb=outTimeBoolbStr;
     
-    if(Array.from(new Set(opetList)).length>1) {
+    if(Array.from(new Set(opetList)).length>=1) {
       return (
         <ScrollView horizontal={true}>
           <View style={styles.container}>
@@ -286,59 +363,6 @@ export default function ReportContainer({navigation}){
             </View>
           </View>
         </ScrollView>
-      );
-    }
-    else if(Array.from(new Set(opetList)).length==1) {
-      return (
-        <View style={styles.container}>
-            <Image style={styles.petimage} source={require('../asset/pet1.png')} />
-            <Text style={styles.name}>{petNamea}</Text>
-            <View style={styles.numavg}>
-              <Text style={styles.outinfo}>
-                {outNuma}회<Text style={styles.textinfo}>{"\n"}산책 횟수</Text>
-              </Text>
-              <Text style={styles.outinfo}>
-                {outTimea}<Text style={styles.textinfo}>{"\n"}평균 산책 시간</Text>
-              </Text>
-            </View>
-            <Calendar style={{
-              width: screenWidth, 
-              borderWidth: 5, 
-              borderTopColor: '#FF9900', 
-              borderBottomColor: '#FF9900', 
-              borderLeftColor: '#FFFFFF', 
-              borderRightColor: '#FFFFFF',
-              paddingHorizontal: 10, 
-            }}
-              current={calStart}
-              minDate={calStart}
-              maxDate={calEnd}
-              markedDates= {obja}
-              monthFormat={'yyyy MM'}
-              hideArrows={true}
-              renderArrow={(direction) => (<Arrow/>)}
-              hideExtraDays={false}
-              disableMonthChange={true}
-              firstDay={7}
-              hideDayNames={false}
-              showWeekNumbers={false}
-              onPressArrowLeft={subtractMonth => subtractMonth()}
-              onPressArrowRight={addMonth => addMonth()}
-              disableArrowLeft={true}
-              disableArrowRight={true}
-              disableAllTouchEventsForDisabledDays={true}
-              renderHeader={(date) => {/*Return JSX*/}}
-            />
-            <View>
-              <Text style={styles.explain}>지난달 대비</Text>
-            </View>
-            <View style={styles.numavg}>
-              <Text style={styles.explains}>산책 횟수 </Text>
-              <Text style={styles.explainnum}>{ NumBoola },</Text>
-              <Text style={styles.explains}> 산책 시간 </Text>
-              <Text style={styles.explainnum}>{ TimeBoola }</Text>
-            </View>
-          </View>
       );
     }
     else {
