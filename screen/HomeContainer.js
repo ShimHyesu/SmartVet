@@ -3,15 +3,17 @@ import {
   StyleSheet,
   View,
   Text,
-  Button,
   ScrollView,
   TouchableOpacity,
-  StatusBar,
   Dimensions,
   Image,
 } from 'react-native';
 import {color} from 'react-native-elements/dist/helpers';
+import {useState} from 'react';
+import ProgressCircle from 'react-native-progress-circle';
+
 const {width: SCREEN_WIDTH} = Dimensions.get('window');
+
 export default function HomeContainer({navigation}) {
   React.useLayoutEffect(() => {
     navigation.setOptions({
@@ -28,6 +30,14 @@ export default function HomeContainer({navigation}) {
     });
   });
 
+  const [recommended_walk_pet1, set_recommended_walk_pet1] = useState(40);
+  const [pet1_mon_walk, set_pet1_mon_walk] = useState(41);
+  const [recommended_walk_pet2, set_recommended_walk_pet2] = useState(40);
+  const [pet2_mon_walk, set_pet2_mon_walk] = useState(30);
+  const [today, setToday] = useState('mon');
+  const [pet1_percent, set_pet1_Percent] = useState(100 / 7);
+  const [pet2_percent, set_pet2_Percent] = useState(0 / 7);
+
   return (
     <View style={home_styles.container}>
       <ScrollView
@@ -37,46 +47,108 @@ export default function HomeContainer({navigation}) {
         <View style={home_styles.view}>
           <View style={home_styles.pet_box}>
             <View style={home_styles.imgContainer}>
-              <Image
-                source={require('../asset/pet1.png')}
-                resizeMode="stretch"
-              />
+              <ProgressCircle
+                percent={pet1_percent}
+                radius={50}
+                borderWidth={10}
+                color="#FF9A17"
+                shadowColor="white"
+                bgColor="gray">
+                <TouchableOpacity
+                  activeOpacity={0.8}
+                  onPress={() =>
+                    navigation.navigate('puppy_navi', {screen: 'puppy_info'})
+                  }>
+                  <Image source={require('../asset/pet1.png')} />
+                </TouchableOpacity>
+              </ProgressCircle>
             </View>
             <View style={home_styles.nameContainer}>
               <Text style={home_styles.nameText}>쩨리</Text>
-              <Text>권장 산책량 : 40min</Text>
+              <Text>권장 산책량 : {recommended_walk_pet1}min</Text>
             </View>
             <View style={home_styles.graphContainer}>
               <View style={home_styles.monday}>
-                <Text style={home_styles.weekdayText}>월</Text>
-                <View style={home_styles.barGraph}></View>
-                <Text style={home_styles.minText}>55min</Text>
+                <Text
+                  {...(today === 'mon'
+                    ? {style: home_styles.weekdayTextToday}
+                    : {style: home_styles.weekdayText})}>
+                  월
+                </Text>
+                <View
+                  style={
+                    pet1_mon_walk > recommended_walk_pet1
+                      ? {
+                          width: '60%',
+                          backgroundColor: 'red',
+                          marginLeft: 10,
+                          borderRadius: 50,
+                          height: '50%',
+                        }
+                      : {
+                          width: `${
+                            (pet1_mon_walk / recommended_walk_pet1) * 60
+                          } %`,
+                          backgroundColor: '#FF9A17',
+                          marginLeft: 10,
+                          borderRadius: 50,
+                          height: '50%',
+                        }
+                  }></View>
+                <Text style={home_styles.minText}>{pet1_mon_walk}min</Text>
               </View>
               <View style={home_styles.tuesday}>
-                <Text style={home_styles.weekdayText}>화</Text>
-                <View style={home_styles.barGraph}></View>
-                <Text style={home_styles.minText}>42min</Text>
+                <Text
+                  {...(today === 'tue'
+                    ? {style: home_styles.weekdayTextToday}
+                    : {style: home_styles.weekdayText})}>
+                  화
+                </Text>
+                <Text style={home_styles.minText}></Text>
               </View>
               <View style={home_styles.wednesday}>
-                <Text style={home_styles.weekdayText}>수</Text>
-                <View style={home_styles.barGraph1}></View>
-                <Text style={home_styles.minText}>21min</Text>
+                <Text
+                  {...(today === 'wed'
+                    ? {style: home_styles.weekdayTextToday}
+                    : {style: home_styles.weekdayText})}>
+                  수
+                </Text>
+                <Text style={home_styles.minText}></Text>
               </View>
               <View style={home_styles.thursday}>
-                <Text style={home_styles.weekdayText}>목</Text>
-                <View style={home_styles.barGraph}></View>
-                <Text style={home_styles.minText}>41min</Text>
+                <Text
+                  {...(today === 'thu'
+                    ? {style: home_styles.weekdayTextToday}
+                    : {style: home_styles.weekdayText})}>
+                  목
+                </Text>
+                <Text style={home_styles.minText}></Text>
               </View>
               <View style={home_styles.friday}>
-                <Text style={home_styles.weekdayText}>금</Text>
+                <Text
+                  {...(today === 'fri'
+                    ? {style: home_styles.weekdayTextToday}
+                    : {style: home_styles.weekdayText})}>
+                  금
+                </Text>
                 <Text style={home_styles.minText}></Text>
               </View>
               <View style={home_styles.saturday}>
-                <Text style={home_styles.weekdayText}>토</Text>
+                <Text
+                  {...(today === 'sat'
+                    ? {style: home_styles.weekdayTextToday}
+                    : {style: home_styles.weekdayText})}>
+                  토
+                </Text>
                 <Text style={home_styles.minText}></Text>
               </View>
               <View style={home_styles.sunday}>
-                <Text style={home_styles.weekdayText}>일</Text>
+                <Text
+                  {...(today === 'sun'
+                    ? {style: home_styles.weekdayTextToday}
+                    : {style: home_styles.weekdayText})}>
+                  일
+                </Text>
                 <Text style={home_styles.minText}></Text>
               </View>
             </View>
@@ -85,46 +157,108 @@ export default function HomeContainer({navigation}) {
         <View style={home_styles.view}>
           <View style={home_styles.pet_box}>
             <View style={home_styles.imgContainer}>
-              <Image
-                source={require('../asset/pet2.png')}
-                resizeMode="stretch"
-              />
+              <ProgressCircle
+                percent={pet2_percent}
+                radius={50}
+                borderWidth={10}
+                color="#FF9A17"
+                shadowColor="white"
+                bgColor="gray">
+                <TouchableOpacity
+                  activeOpacity={0.8}
+                  onPress={() =>
+                    navigation.navigate('puppy_navi', {screen: 'puppy_info'})
+                  }>
+                  <Image source={require('../asset/pet2.png')} />
+                </TouchableOpacity>
+              </ProgressCircle>
             </View>
             <View style={home_styles.nameContainer}>
               <Text style={home_styles.nameText}>보리</Text>
-              <Text>권장 산책량 : 40min</Text>
+              <Text>권장 산책량 : {recommended_walk_pet2}min</Text>
             </View>
             <View style={home_styles.graphContainer}>
               <View style={home_styles.monday}>
-                <Text style={home_styles.weekdayText}>월</Text>
-                <View style={home_styles.barGraph}></View>
-                <Text style={home_styles.minText}>48min</Text>
+                <Text
+                  {...(today === 'mon'
+                    ? {style: home_styles.weekdayTextToday}
+                    : {style: home_styles.weekdayText})}>
+                  월
+                </Text>
+                <View
+                  style={
+                    pet2_mon_walk > recommended_walk_pet2
+                      ? {
+                          width: '60%',
+                          backgroundColor: 'red',
+                          marginLeft: 10,
+                          borderRadius: 50,
+                          height: '50%',
+                        }
+                      : {
+                          width: `${
+                            (pet2_mon_walk / recommended_walk_pet2) * 60
+                          } %`,
+                          backgroundColor: '#FF9A17',
+                          marginLeft: 10,
+                          borderRadius: 50,
+                          height: '50%',
+                        }
+                  }></View>
+                <Text style={home_styles.minText}>{pet2_mon_walk}min</Text>
               </View>
               <View style={home_styles.tuesday}>
-                <Text style={home_styles.weekdayText}>화</Text>
-                <View style={home_styles.barGraph2}></View>
-                <Text style={home_styles.minText}>12min</Text>
+                <Text
+                  {...(today === 'tue'
+                    ? {style: home_styles.weekdayTextToday}
+                    : {style: home_styles.weekdayText})}>
+                  화
+                </Text>
+                <Text style={home_styles.minText}></Text>
               </View>
               <View style={home_styles.wednesday}>
-                <Text style={home_styles.weekdayText}>수</Text>
-                <View style={home_styles.barGraph}></View>
-                <Text style={home_styles.minText}>55min</Text>
+                <Text
+                  {...(today === 'wed'
+                    ? {style: home_styles.weekdayTextToday}
+                    : {style: home_styles.weekdayText})}>
+                  수
+                </Text>
+                <Text style={home_styles.minText}></Text>
               </View>
               <View style={home_styles.thursday}>
-                <Text style={home_styles.weekdayText}>목</Text>
-                <View style={home_styles.barGraph3}></View>
-                <Text style={home_styles.minText}>32min</Text>
+                <Text
+                  {...(today === 'thu'
+                    ? {style: home_styles.weekdayTextToday}
+                    : {style: home_styles.weekdayText})}>
+                  목
+                </Text>
+                <Text style={home_styles.minText}></Text>
               </View>
               <View style={home_styles.friday}>
-                <Text style={home_styles.weekdayText}>금</Text>
+                <Text
+                  {...(today === 'fri'
+                    ? {style: home_styles.weekdayTextToday}
+                    : {style: home_styles.weekdayText})}>
+                  금
+                </Text>
                 <Text style={home_styles.minText}></Text>
               </View>
               <View style={home_styles.saturday}>
-                <Text style={home_styles.weekdayText}>토</Text>
+                <Text
+                  {...(today === 'sat'
+                    ? {style: home_styles.weekdayTextToday}
+                    : {style: home_styles.weekdayText})}>
+                  토
+                </Text>
                 <Text style={home_styles.minText}></Text>
               </View>
               <View style={home_styles.sunday}>
-                <Text style={home_styles.weekdayText}>일</Text>
+                <Text
+                  {...(today === 'sun'
+                    ? {style: home_styles.weekdayTextToday}
+                    : {style: home_styles.weekdayText})}>
+                  일
+                </Text>
                 <Text style={home_styles.minText}></Text>
               </View>
             </View>
@@ -132,7 +266,13 @@ export default function HomeContainer({navigation}) {
         </View>
         <View style={home_styles.view}>
           <View style={home_styles.pet_box}>
-            <Text style={home_styles.plusText}>+</Text>
+            <TouchableOpacity
+              activeOpacity={0.8}
+              onPress={() =>
+                navigation.navigate('puppy_navi', {screen: 'puppy_add'})
+              }>
+              <Text style={home_styles.plusText}>+</Text>
+            </TouchableOpacity>
           </View>
         </View>
       </ScrollView>
@@ -167,6 +307,8 @@ const home_styles = StyleSheet.create({
     marginTop: '15%',
     width: '30%',
     height: '20%',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   nameContainer: {
     width: '90%',
@@ -232,6 +374,12 @@ const home_styles = StyleSheet.create({
     top: '73%',
   },
   weekdayText: {
+    lineHeight: 21,
+    fontWeight: 'bold',
+    fontSize: 18,
+  },
+  weekdayTextToday: {
+    color: '#FF9A17',
     lineHeight: 21,
     fontWeight: 'bold',
     fontSize: 18,
