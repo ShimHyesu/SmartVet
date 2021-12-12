@@ -22,6 +22,8 @@ export default function LoginContainer({ navigation }) {
     const [initializing, setInitializing] = useState(true);
     const [user, setUser] = useState();
 
+    let userName;
+
     function onAuthStateChanged(user) {
         setUser(user);
         if (initializing) setInitializing(false);
@@ -66,7 +68,8 @@ export default function LoginContainer({ navigation }) {
                         console.log(user.email);
                         userDocument.then(documentSnapshot =>{
                             console.log(documentSnapshot.data());
-                            console.log(documentSnapshot.get('name'));
+                            userName = documentSnapshot.get('name');
+                            console.log(userName);
                        });
                         navigation.navigate('tab_navi')
                     })

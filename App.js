@@ -4,6 +4,8 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { useNavigation } from '@react-navigation/native';
+import auth from '@react-native-firebase/auth';
+import firestore from '@react-native-firebase/firestore';
 
 import Loading from './screen/LoadingContainer';
 import LogJoin from './screen/LogJoinContainer'
@@ -102,6 +104,7 @@ function Friend_navi(){
 
 
 export default function App(){
+
   return(
     <NavigationContainer  initialRouteName="loading">
       <Stack.Navigator>
