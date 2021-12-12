@@ -84,7 +84,7 @@ export default function Walk_trackingContainer(){
             // arrLatitude[gpsChangeNumCount] = latitude,
             // arrLongitude[longitudeChangeNumCount] = longitude,
 
-            {enableHighAccuracy: true, timeout: 10000, maximumAge: 5000},
+            {enableHighAccuracy: true, timeout: 10000, maximumAge: 10000},
           );
         }
   
@@ -118,6 +118,8 @@ export default function Walk_trackingContainer(){
                 latitudeDelta: 0.0922,
                 longitudeDelta: 0.0421,
                 }}
+                style={[styles.map]}
+                provider={PROVIDER_GOOGLE}
                 
                 <Marker
                   coordinate={{
