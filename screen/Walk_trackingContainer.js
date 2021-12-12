@@ -4,8 +4,6 @@ import MapView, { PROVIDER_GOOGLE, Marker, Polyline } from "react-native-maps";
 import { View, Text ,Button, Platform, PermissionsAndroid, StyleSheet } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 
-var coordinates = {};
-
 // 타이머 + 지도 구현
 
 async function requestPositionPermission() {
@@ -126,7 +124,7 @@ export default function Walk_trackingContainer(){
 
                 <Polyline
 
-                  coordinates={coordinates}
+                  coordinates={newCoordinate}
 
                     strokeColor="#000" // fallback for when `strokeColors` is not supported by the map-provider
                     strokeColors={[
