@@ -84,7 +84,7 @@ export default function Walk_trackingContainer(){
             // arrLatitude[gpsChangeNumCount] = latitude,
             // arrLongitude[longitudeChangeNumCount] = longitude,
 
-            {enableHighAccuracy: true, timeout: 10000, maximumAge: 5000},
+            {enableHighAccuracy: true, timeout: 10000, maximumAge: 10000},
           );
         }
   
@@ -118,6 +118,8 @@ export default function Walk_trackingContainer(){
                 latitudeDelta: 0.0922,
                 longitudeDelta: 0.0421,
                 }}
+                style={[styles.map]}
+                provider={PROVIDER_GOOGLE}
                 
                 <Marker
                   coordinate={{
@@ -173,33 +175,33 @@ export default function Walk_trackingContainer(){
     )
 }
 
-    const styles = StyleSheet.create({
+  const styles = StyleSheet.create({
   
-        container: {
-          flexDirection: 'row'
-          // justifyContent: 'space-between'
-        },
       
-        map: {
-          width: 1000,
-          height: 1000,
-        },
+    map: {
+      position: 'absolute',
+      left: 540,                                                                                                                                                                                                    
+      top: 0
+    },
 
-        startButton: {
-            width: 50,
-            height: 50
-        
-          },
-      
-        stopButton: {
-          width: 50,
-          height: 50
-      
-        },
-      
-        resetButton: {
-          width: 50,
-          height: 50
-      
-        }
-    })
+    startButton: {
+      position: 'absolute',                                                                                                                                                                                                
+      left: 300,                                                                                                                                                                                                    
+      top: 1800
+  
+    },
+
+    stopButton: {
+      position: 'absolute',                                                                                                                                                                                                
+      left: 500,                                                                                                                                                                                                    
+      top: 1800
+
+    },
+
+    resetButton: {
+      position: 'absolute',                                                                                                                                                                                                
+      left: 700,                                                                                                                                                                                                    
+      top: 1800
+
+    }
+  })
