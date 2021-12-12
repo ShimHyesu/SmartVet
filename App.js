@@ -6,7 +6,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { useNavigation } from '@react-navigation/native';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
-
+import Ionicons from 'react-native-vector-icons/Ionicons';
 import Loading from './screen/LoadingContainer';
 import LogJoin from './screen/LogJoinContainer'
 import Login from './screen/LoginContainer';
@@ -33,8 +33,8 @@ function LogJoin_navi(){
   return(
     <Stack.Navigator>
       <Stack.Screen name="logjoin" component={LogJoin} options={{headerShown:false}}/>
-      <Stack.Screen name="login" component={Login} />
-      <Stack.Screen name="join" component={Join} />
+      <Stack.Screen name="login" component={Login} options={{ title: ' ',}}/>
+      <Stack.Screen name="join" component={Join} options={{ title: ' ',}}/>
     </Stack.Navigator>
   );
 }
@@ -50,11 +50,40 @@ function LogoTitle(){
   );
 }
 
+const TabBarIcon=(focused,name)=>{
+  let iconName, iconSize, iconColor;
+  
+  if(name=='home'){
+    iconName='home-outline'
+  }else if(name=='walk'){
+    iconName='paw-outline'
+  }else if(name=='profile'){
+    iconName='person-outline'
+  } 
+
+  iconSize=20
+  iconColor=focused?'#FF9A17':'#A6A6A6'
+  return (
+    <Ionicons
+    name={iconName}
+    color={iconColor}
+    size={iconSize} />
+    )
+
+}
+
 function Tab_navi(){
   return(
     <Tab.Navigator initialRouteName="home"
-      screenOptions={{
-        headerTitle:(props)=><LogoTitle{...props}/>}}>
+      screenOptions={({route})=>({
+        tabBarActiveTintColor:'#FF9A17',
+        tabBarInactiveTintColor:'#A6A6A6',
+        tabBarLabel:route.name,
+        tabBarIcon:({focused})=>(
+          TabBarIcon(focused,route.name)
+        ),
+        headerTitle:(props)=><LogoTitle{...props}/>
+      })}>
       <Tab.Screen name="home" component={Home} />
       <Tab.Screen name="walk" component={Walk} />
       <Tab.Screen name="profile" component={Profile} />
