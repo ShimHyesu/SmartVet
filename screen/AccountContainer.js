@@ -23,20 +23,19 @@ export default function AccountContainer() {
     });
   }, [userData]);
 
-
-  const updateName = () => {
-    setName(name);
+  const updateName=(name)=>{
+    setName(name)
     firestore()
-      .collection('users')
-      .doc(auth().currentUser.uid)
-      .update({
-        name: name,
-      })
-      .then(() => {
-        console.log('User updated!');
-        console.log(userData.name);
-      });
-  }
+    .collection('users')
+    .doc(auth().currentUser.uid)
+    .update({
+      name: name,
+    })
+    .then(() => {
+      console.log('User updated!');
+      console.log(userData.name);
+    });
+  };
 
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
@@ -143,35 +142,17 @@ export default function AccountContainer() {
             <TextInput style={in_styles.text_m}
               onChangeText = {(name) => setName(name)
             }
-              placeholder={userData.name} />
+              placeholder={userData.name} 
+              onEndEditing={()=>updateName(name)}/>
           </View>
           <View style={in_styles.block_r}>
             <Text style={in_styles.text_r}>{'  >      '}</Text>
           </View>
         </TouchableOpacity>
       </View>
-      <TouchableOpacity style={styles.loginBtn}
-        onPress={() => updateName()
-        }>
-        <Text style={styles.loginText}>완료</Text>
-
-      </TouchableOpacity>
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  loginBtn: {
-    width: "80%",
-    borderRadius: 30,
-    height: 60,
-    alignItems: "center",
-    justifyContent: "center",
-    marginTop: 20,
-    backgroundColor: "#FF9A17",
-  },
-});
-
 
 const ac_styles = StyleSheet.create({
   container: {
@@ -270,4 +251,4 @@ const m_style = StyleSheet.create({
     fontWeight: "bold",
     fontSize: 18,
   },
-})
+});

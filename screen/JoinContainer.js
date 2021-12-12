@@ -97,7 +97,7 @@ export default function LoginContainer({ navigation }) {
 
                         console.error(error);
                     })}>
-                <Text style={styles.loginText}>회원가입</Text>
+                <Text style={{fontWeight:'bold',color:'#ffffff',fontSize:16}}>회원가입</Text>
 
             </TouchableOpacity>
         </View>

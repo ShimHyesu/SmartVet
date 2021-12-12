@@ -7,6 +7,7 @@ import { useNavigation } from '@react-navigation/native';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+
 import Loading from './screen/LoadingContainer';
 import LogJoin from './screen/LogJoinContainer'
 import Login from './screen/LoginContainer';
@@ -24,7 +25,6 @@ import Puppy_info from './screen/Puppy_infoContainer';
 import Puppy_add from './screen/Puppy_addContainer';
 import Friend_list from './screen/Friend_listContainer';
 import Friend_add from './screen/Friend_addContainer';
-
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -91,10 +91,16 @@ function Tab_navi(){
   );
 }
 
-function Walk_navi(){
+function Walk_navi({navigation}){
   return(
     <Stack.Navigator>
-      <Stack.Screen name="walk_add" component={Walk_add} />
+      <Stack.Screen name="walk_add" component={Walk_add} options={{ 
+          title: ' ',
+          headerRight: () => (
+            <TouchableOpacity activeOpacity={0.4} onPress={() => navigation.navigate('tab_navi',{screen:'walk'})}>
+              <Text style={{color:'#FF9A17', fontWeight:'bold',fontSize: 22,}}>추가</Text>
+            </TouchableOpacity>
+          ),}} />
       <Stack.Screen name="walk_tracking" component={Walk_tracking} />
     </Stack.Navigator>
   );
@@ -114,7 +120,7 @@ function Puppy_navi({navigation}){
       <Stack.Screen name="puppy_add" component={Puppy_add} options={{ 
           title: ' ',
           headerRight: () => (
-            <TouchableOpacity activeOpacity={0.4} onPress={() => alert('완료')}>
+            <TouchableOpacity activeOpacity={0.4} onPress={() => navigation.navigate('puppy_list')}>
               <Text style={{color:'#FF9A17', fontWeight:'bold',fontSize: 22,}}>완료</Text>
             </TouchableOpacity>
           ),}}/>
@@ -133,7 +139,6 @@ function Friend_navi(){
 
 
 export default function App(){
-
   return(
     <NavigationContainer  initialRouteName="loading">
       <Stack.Navigator>
@@ -143,13 +148,7 @@ export default function App(){
         <Stack.Screen name="alarm" component={Alarm} />
         <Stack.Screen name="report" component={Report} />
         <Stack.Screen name="walk_navi" component={Walk_navi} options={{headerShown:false}} />
-        <Stack.Screen name="account" component={Account} options={{ 
-          title: ' ',
-          headerRight: () => (
-            <TouchableOpacity activeOpacity={0.4} onPress={() => alert('완료')}>
-              <Text style={{color:'#FF9A17', fontWeight:'bold',fontSize: 22,}}>완료</Text>
-            </TouchableOpacity>
-          ),}}/>
+        <Stack.Screen name="account" component={Account} options={{ title: ' ',}}/>
         <Stack.Screen name="puppy_navi" component={Puppy_navi} options={{headerShown:false}}/>
         <Stack.Screen name="friend_navi" component={Friend_navi} options={{headerShown:false}}/>
       </Stack.Navigator>

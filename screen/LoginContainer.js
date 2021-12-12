@@ -91,7 +91,7 @@ export default function LoginContainer({ navigation }) {
 
                         console.error(error);
                     })}>
-                <Text style={styles.loginText}>로그인</Text>
+                <Text style={{fontWeight:'bold',color:'#ffffff',fontSize:16}}>로그인</Text>
 
             </TouchableOpacity>
         </View>
