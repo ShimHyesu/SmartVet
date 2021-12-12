@@ -26,10 +26,10 @@ const styles = StyleSheet.create({
     container: {
       flex: 1,
       backgroundColor: '#FFFFFF',
-      marginTop: 25,
       width: screenWidth,
       //justifyContent: 'center',
-      alignItems: 'center',
+      //alignItems: 'center',
+      paddingLeft:30
     },
     backbutton: {
       position: 'absolute',
@@ -57,11 +57,11 @@ const styles = StyleSheet.create({
     },
     alarmlist: {
         flexDirection: 'row',
-        alignItems: 'center',
+        //alignItems: 'center',
         marginTop: 10,
     },
     alarmheader: {
-        fontSize: 25,
+        fontSize: 22,
         fontWeight: 'bold',
         paddingBottom: 5,
         marginTop: 10,
@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
         color: 'black',
     },
     dateinfo: {
-        fontSize: 15,
+        fontSize: 13,
         alignItems: 'center',
         color: '#999999',
         //paddingTop: 20,

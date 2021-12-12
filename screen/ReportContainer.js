@@ -308,7 +308,7 @@ export default function ReportContainer({navigation}){
               borderBottomColor: '#FF9900', 
               borderLeftColor: '#FFFFFF', 
               borderRightColor: '#FFFFFF',
-              paddingHorizontal: 10, 
+              paddingHorizontal: 5, 
             }}
               current={calStart}
               minDate={calStart}
@@ -355,7 +355,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#FFFFFF',
-    marginTop: 25,
+    //marginTop: 25,
     width: screenWidth,
     justifyContent: 'center',
     alignItems: 'center',
@@ -369,8 +369,8 @@ const styles = StyleSheet.create({
   name: {
     fontSize: 22,
     fontWeight: 'bold',
-    marginTop: 20,
-    paddingTop: 30,
+    marginTop: 5,
+    paddingTop: 20,
     textAlign: 'center',
     color: 'black',
   },
@@ -380,8 +380,8 @@ const styles = StyleSheet.create({
   },
   petimage: {
     width: '100%',
-    height: '20%',
-    top: 30,
+    height: '16%',
+    top: 20,
     resizeMode:'contain',
   },
   numavg: {
@@ -389,7 +389,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   outinfo: {
-    fontSize: 22,
+    fontSize: 20,
     fontWeight: 'bold',
     paddingHorizontal: '8%',
     paddingTop: 20,
@@ -398,7 +398,7 @@ const styles = StyleSheet.create({
     color: 'black',
   },
   textinfo: {
-    fontSize: 15,
+    fontSize: 13,
     alignItems: 'center',
     color: '#999999',
     paddingTop: 20,
@@ -406,14 +406,14 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   explain: {
-    fontSize: 22,
+    fontSize: 20,
     fontWeight: 'bold',
     marginTop: 1,
     paddingTop: 5,
     textAlign: 'center',
   },
   explains: {
-    fontSize: 22,
+    fontSize: 20,
     fontWeight: 'bold',
     marginTop: 1,
     paddingTop: 3,
