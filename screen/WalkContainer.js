@@ -1,6 +1,22 @@
 import React from 'react';
 import { View, Text ,Button} from 'react-native';
 
+//
+async function requestPositionPermission() {
+  try {
+      
+    if (Platform.OS === "android") {
+        return await PermissionsAndroid.request(
+          PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
+        );
+    }
+    
+  } catch (e) {
+    console.log(e);
+  }
+}
+
+// main
 export default function WalkContainer({navigation}){
     return(
         <View>
