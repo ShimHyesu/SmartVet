@@ -4,7 +4,7 @@ import MapView, { PROVIDER_GOOGLE, Marker, Polyline } from "react-native-maps";
 import { View, Text ,Button, Platform, PermissionsAndroid, StyleSheet } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 
-var coordinates_update = {};
+var coordinates = {};
 
 // 타이머 + 지도 구현
 
@@ -54,10 +54,6 @@ const useCounter = ({initialValue, ms}) => {
 
 export default function Walk_trackingContainer(){
     
-    // var arrLatitude = new Array();
-    // var arrLongitude = new Array();
-    // var latitudeChangeNumCount;
-    // var longitudeChangeNumCount;
     const [location, setLocation] = useState();
     useEffect(() => {
       requestPositionPermission().then(result => {
@@ -67,23 +63,24 @@ export default function Walk_trackingContainer(){
           Geolocation.watchPosition(
             position => {
               const {latitude, longitude} = position.coords;
-              const newCoordinate = {
-                latitude,
-                longitude,
-              }
+              
               setLocation({
                 latitude,
                 longitude,
-            });
+              }) //;
+              
+              const newCoordinate = {
+                latitude,
+                longitude,
+              } 
   
           },
             error => {
               console.log(error.code, error.message);
             },
-
-            // arrLatitude[gpsChangeNumCount] = latitude,
-            // arrLongitude[longitudeChangeNumCount] = longitude,
-
+  
+            trackingCount = coordinates.push(newCoordinate);
+            
             {enableHighAccuracy: true, timeout: 10000, maximumAge: 10000},
           );
         }
@@ -93,7 +90,7 @@ export default function Walk_trackingContainer(){
     }, []);
 
     const [currentHours, setCurrentHours] = useState(0);
-    const [CurrentMinutes, setCurrentMinutes] = useState(0);
+    const [currentMinutes, setCurrentMinutes] = useState(0);
     const [currentSeconds, setCurrentSeconds] = useState(0);
     const {count, start, stop, reset} = useCounter(0, 1000);
 
@@ -131,7 +128,7 @@ export default function Walk_trackingContainer(){
 
                 <Polyline
 
-                  coordinates={coordinates_update}
+                  coordinates={coordinates}
 
                     strokeColor="#000" // fallback for when `strokeColors` is not supported by the map-provider
                     strokeColors={[
@@ -150,7 +147,7 @@ export default function Walk_trackingContainer(){
                  )}
             
                 {currentHours < 10 ? `0${currentHours}` : currentHours}: 
-                {CurrentMinutes < 10 ? `0${CurrentMinutes}` : CurrentMinutes}: 
+                {currentMinutes < 10 ? `0${currentMinutes}` : currentMinutes}: 
                 {currentSeconds < 10 ? `0${currentSeconds}` : currentSeconds}
                 
                 <Button>
