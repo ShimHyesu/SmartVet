@@ -349,7 +349,7 @@ export default function Puppy_addContainer(){
                     <View style={in_styles.block_m}>
                         <TextInput style={in_styles.text_m}
                             onChangeText={onChangeInput_name}
-                            name={name}
+                            value={name}
                             placeholder="입력"/>
                     </View>
                     <View style={in_styles.block_r}>
@@ -363,7 +363,7 @@ export default function Puppy_addContainer(){
                     <View style={in_styles.block_m}>
                         <TextInput style={in_styles.text_m}
                             onChangeText={onChangeInput_birth}
-                            birth={birth}
+                            value={birth}
                             keyboardType="number-pad"
                             placeholder="입력"/>
                     </View>
@@ -419,7 +419,10 @@ export default function Puppy_addContainer(){
                             onChangeText={onChangeInput_weight}
                             value={weight}
                             keyboardType="number-pad"
-                            placeholder="입력"/>
+                            placeholder=""/>
+                    </View>
+                    <View style={in_styles.block_m}>
+                        <Text style={in_styles.text_m}>kg</Text>
                     </View>
                     <View style={in_styles.block_r}>
                         <Text style={in_styles.text_r}>{'  >      '}</Text>

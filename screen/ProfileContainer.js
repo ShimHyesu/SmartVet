@@ -51,16 +51,6 @@ export default function ProfileContainer({ navigation }) {
           </View>
         </TouchableOpacity>
         <View style={s_styles.block_b}></View>
-        <TouchableOpacity style={s_styles.button}
-          activeOpacity={0.8} onPress={() => navigation.navigate('friend_navi', { screen: 'friend_list' })}>
-          <View style={s_styles.block_l}>
-            <Text style={s_styles.text_l}>     친구</Text>
-          </View>
-          <View style={s_styles.block_r}>
-            <Text style={s_styles.text_r}>{'  >      '}</Text>
-          </View>
-        </TouchableOpacity>
-        <View style={s_styles.block_b}></View>
       </View>
     </View>
   );

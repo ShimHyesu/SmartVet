@@ -35,9 +35,9 @@ const useCounter = ({initialValue, ms}) => {
     const stop = useCallback(() => {
         if (intervalRef.current === null) {
             return;
-    }
-    clearInterval(intervalRef.current);
-    intervalRef.current = null;
+    };
+    clearInterval(intervalRef.current)
+    intervalRef.current = null
 }, []);
 
 
@@ -53,6 +53,7 @@ const useCounter = ({initialValue, ms}) => {
 export default function Walk_trackingContainer(){
     
     const [location, setLocation] = useState();
+
     useEffect(() => {
       requestPositionPermission().then(result => {
         console.log({ result });
@@ -68,17 +69,17 @@ export default function Walk_trackingContainer(){
               setLocation({
                 latitude,
                 longitude,
-            });
+            })
   
-          },
+            },
             error => {
               console.log(error.code, error.message);
             },
 
-            trackingCount = coordinates.push(newCoordinate);
+            trackingCount = coordinates.push(newCoordinate),
 
             {enableHighAccuracy: true, timeout: 10000, maximumAge: 10000},
-          );
+          )
         }
   
         
@@ -98,13 +99,13 @@ export default function Walk_trackingContainer(){
         setCurrentHours(hours)
         setCurrentMinutes(minutes)
         setCurrentSeconds(seconds)
-    }
+    };
 
     useEffect(timer, [count]);
     return(
         <View>
-            {location && (
-              <MapView>
+            {location &&(
+              <MapView
                 initialRegion={{
                 latitude: location.latitude,
                 longitude: location.longitude,
@@ -113,13 +114,13 @@ export default function Walk_trackingContainer(){
                 }}
                 style={[styles.map]}
                 provider={PROVIDER_GOOGLE}
-                
+                >
                 <Marker
                   coordinate={{
                   latitude: location.latitude,
                   longitude: location.longitude,
-              }}
-            />
+                  }}
+                />
 
 
                 <Polyline
@@ -140,32 +141,28 @@ export default function Walk_trackingContainer(){
 
                 </MapView>
 
-                 )}
+              )}
             
-                {currentHours < 10 ? `0${currentHours}` : currentHours}: 
-                {currentMinutes < 10 ? `0${currentMinutes}` : currentMinutes}: 
+                {currentHours < 10 ? `0${currentHours}` : currentHours}
+                {currentMinutes < 10 ? `0${currentMinutes}` : currentMinutes} 
                 {currentSeconds < 10 ? `0${currentSeconds}` : currentSeconds}
                 
-                <Button>
+                <Button
                 style={[styles.startButton]}
                 onClick={start}
-                title = "Start"
-                </Button>
+                title = "Start"/>
                 
-                <Button>
+                <Button
                 style={[styles.stopButton]}
                 onClick={stop}
-                title = "Stop"
-                </Button>
+                title = "Stop"/>
 
-                <Button>
+                <Button
                 style={[styles.resetButton]}
                 onClick={reset}
-                title = "Reset"
-                </Button>
-                
+                title = "Reset"/>      
         </View>
-    )
+    );
 }
 
   const styles = StyleSheet.create({
@@ -174,27 +171,25 @@ export default function Walk_trackingContainer(){
     map: {
       position: 'absolute',
       left: 540,                                                                                                                                                                                                    
-      top: 0
+      top: 0,
     },
 
     startButton: {
       position: 'absolute',                                                                                                                                                                                                
       left: 300,                                                                                                                                                                                                    
-      top: 1800
-  
+      top: 1800,
     },
 
     stopButton: {
       position: 'absolute',                                                                                                                                                                                                
       left: 500,                                                                                                                                                                                                    
-      top: 1800
-
+      top: 1800,
     },
 
     resetButton: {
       position: 'absolute',                                                                                                                                                                                                
       left: 700,                                                                                                                                                                                                    
-      top: 1800
+      top: 1800,
 
-    }
+    },
   })

@@ -35,8 +35,8 @@ export default function HomeContainer({navigation}) {
   const [recommended_walk_pet2, set_recommended_walk_pet2] = useState(40);
   const [pet2_mon_walk, set_pet2_mon_walk] = useState(30);
   const [today, setToday] = useState('mon');
-  const [pet1_percent, set_pet1_Percent] = useState(100 / 7);
-  const [pet2_percent, set_pet2_Percent] = useState(0 / 7);
+  const [pet1_percent, set_pet1_Percent] = useState(100);
+  const [pet2_percent, set_pet2_Percent] = useState(75);
 
   return (
     <View style={home_styles.container}>

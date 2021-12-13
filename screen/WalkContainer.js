@@ -52,7 +52,7 @@ export default function WalkContainer({navigation}){
     return(
         <View>
           {location && (
-              <MapView>
+              <MapView
                 initialRegion={{
                 latitude: location.latitude,
                 longitude: location.longitude,
@@ -61,7 +61,7 @@ export default function WalkContainer({navigation}){
                 }}
                 style={[styles.map]}
                 provider={PROVIDER_GOOGLE}
-
+              >
 
               <Marker
                 coordinate={{

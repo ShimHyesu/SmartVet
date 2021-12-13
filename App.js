@@ -120,7 +120,13 @@ function Puppy_navi({navigation}){
               <Text style={{color:'#FF9A17', fontWeight:'bold',fontSize: 22,}}>추가</Text>
             </TouchableOpacity>
           ),}}/>
-      <Stack.Screen name="puppy_info" component={Puppy_info} />
+      <Stack.Screen name="puppy_info" component={Puppy_info} options={{ 
+          title: ' ',
+          headerRight: () => (
+            <TouchableOpacity activeOpacity={0.4} onPress={() => navigation.navigate('puppy_list')}>
+              <Text style={{color:'#FF9A17', fontWeight:'bold',fontSize: 22,}}>완료</Text>
+            </TouchableOpacity>
+          ),}} />
       <Stack.Screen name="puppy_add" component={Puppy_add} options={{ 
           title: ' ',
           headerRight: () => (
